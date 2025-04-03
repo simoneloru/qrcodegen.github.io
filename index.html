@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Generatore di QR Code</title>
+  <!-- Importa la libreria QRCode.js da un CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    #qrcode {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Generatore di QR Code</h1>
+  <p>Inserisci l'indirizzo (URL) per generare il QR Code:</p>
+  <input type="text" id="address" placeholder="https://esempio.com" style="width: 300px;">
+  <button onclick="generateQRCode()">Genera QR Code</button>
+  <div id="qrcode"></div>
+  
+  <script>
+    function generateQRCode() {
+      // Recupera l'indirizzo inserito
+      var address = document.getElementById("address").value;
+      // Pulisce il contenitore del QR code per eventuali codici precedenti
+      document.getElementById("qrcode").innerHTML = "";
+      // Crea un nuovo QR code
+      var qrcode = new QRCode(document.getElementById("qrcode"), {
+        text: address,
+        width: 128,
+        height: 128,
+        colorDark : "#000000",
+        colorLight : "#ffffff",
+        correctLevel : QRCode.CorrectLevel.H
+      });
+    }
+  </script>
+</body>
+</html>
